@@ -1,33 +1,35 @@
 package no.hvl.dat107.jpa.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Ansatt", schema = "oblig3")
-@NamedQuery(name = "hentAlleAnsatte", query = "SELECT p FROM Ansatt p")
-
 public class Ansatt {
 
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int ansId;
+
 	private String brukernavn;
 	private String fornavn;
 	private String etternavn;
-	private Date ansettelsesDato;
+	private LocalDate ansettelsesDato;
 	private String stilling;
 	private int maanedslonn;
 
+	@ManyToOne
+	@JoinColumn(name = "AvdId")
+	private Avdeling avdeling;
+
 	public Ansatt() {
-		this(0, "abcd", "Ola", "Nordmann", new Date(0), "Sjef", 12345);
+		this(0, "abcd", "Ola", "Nordmann", LocalDate.now(), "Sjef", 12345);
 	}
 
-	public Ansatt(int id, String brukernavn, String fornavn, String etternavn, Date ansettelsesDato, String stilling,
+	public Ansatt(int id, String brukernavn, String fornavn, String etternavn, LocalDate ansettelsesDato, String stilling,
 			int maanedslonn) {
-		this.id = id;
+		this.ansId = id;
 		this.brukernavn = brukernavn;
 		this.fornavn = fornavn;
 		this.etternavn = etternavn;
@@ -52,11 +54,11 @@ public class Ansatt {
 		this.stilling = stilling;
 	}
 
-	public Date getAnsettelsesDato() {
+	public LocalDate getAnsettelsesDato() {
 		return ansettelsesDato;
 	}
 
-	public void setAnsettelsesDato(Date ansettelsesDato) {
+	public void setAnsettelsesDato(LocalDate ansettelsesDato) {
 		this.ansettelsesDato = ansettelsesDato;
 	}
 
@@ -84,17 +86,17 @@ public class Ansatt {
 		this.brukernavn = brukernavn;
 	}
 
-	public int getID() {
-		return id;
+	public int getId() {
+		return ansId;
 	}
 
-	public void setID(int id) {
-		this.id = id;
+	public void setId(int id) {
+		this.ansId = id;
 	}
 
 	@Override
 	public String toString() {
-		return "Ansatt { ID : " + this.id + 
+		return "Ansatt { ID : " + this.ansId + 
 		" | Navn : " + this.fornavn + " " + this.etternavn + 
 		" | Stilling : " + this.stilling + " }";
 	}

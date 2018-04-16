@@ -1,0 +1,22 @@
+{
+    "run": [
+        {
+            "name": "jpa",
+            "projectName": "jpa",
+            "workingDirectory": "/Users/sondregj/Desktop/dat107-oblig3",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        }
+    ],
+    "debug": [
+        {
+            "name": "jpa",
+            "projectName": "jpa",
+            "workingDirectory": "/Users/sondregj/Desktop/dat107-oblig3",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        }
+    ]
+}

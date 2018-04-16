@@ -1,8 +1,6 @@
 package no.hvl.dat107.jpa.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Prosjekt", schema = "oblig3")
@@ -10,6 +8,14 @@ import javax.persistence.Table;
 
 public class Prosjekt {
 	
+	@Id
+	private int prId;
+
+
+
+	public int getId() {
+		return this.prId;
+	}
 
 	@Override
 	public String toString() {
